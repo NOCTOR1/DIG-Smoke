@@ -7,18 +7,19 @@
 
 Demo展示
 在这里，我展示一下我制作的电子烟简易Demo，该Demo主要的功能就是展示笙泉MCU：MG82F6D17的发热控温能力。
-
-
+![image](https://github.com/NOCTOR1/Application/blob/master/img/20190806092533.png)
+![image](https://github.com/NOCTOR1/Application/blob/master/img/1.png)
 那么为什么要选择MG82F6D17呢，首先，6D17的引脚数不多，最多20个，价格更加便宜，宽电压工作，1.8~5.5V均可正常工作，适合在电池供电下工作，系统时钟48MHz，PCA时钟144MHz，足够快，然后6D17的优势就是是笙泉第一颗12位800Ksps ADC的8051核MCU，ADC还支持1.4V内部参考电压反推VDD，内部参考电压在经过校准后实测ADC外部输入精度在0.3%以内，最重要的是6D17还支持带电更新AP，不需要将电子烟拔掉电池即可进行应用程序的更新。如此多的优势点都与电子烟应用搭配极佳。
 
 高频PWM优势
 众所周知，笙泉MG82F6D17的PCA时钟源可达144MHz，这在8051核的单片机中很少见，而高频PWM对于控温的好处有很多，我会以以下示意图进行展示。
+![image](https://github.com/NOCTOR1/Application/blob/master/img/20190806092143.png)
 
 高频PWM优势其一：假设在PWM为高电平时发热丝发热，那么在低频PWM发热一次的时间里，高频PWM发热的次数更多，时间更短，发热丝升温的幅度变小，使发热丝的升温更细腻，加热更均匀，不容易瞬间过热或发热丝温度不均匀，同时由于升温不会太快，客户的温控算法可更平顺地控制温度。
-
+![image](https://github.com/NOCTOR1/Application/blob/master/img/20190806092157.png)
 
 高频PWM优势其二：在不同的频率下，调节相同的占空比，也会由于在发热时间隔了多个低电平的时间，使通过调整占空比微调温度时更平顺。
-
+![image](https://github.com/NOCTOR1/Application/blob/master/img/20190806092533.png)
 
 高频PWM优势其三：在占空比变化的幅度中也有影响，比如同样为16位PWM，1%的占空比变化计数值为变化约655个计数值，低频PWM数完这个计数值的时间要比高频PWM数完655个计数值的时间要长，也就是说，占空比改变1%，高频PWM对于温度的变化的幅度也会稍小于低频PWM。
 
